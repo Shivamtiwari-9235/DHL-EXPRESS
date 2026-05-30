@@ -35,12 +35,23 @@ app.get('/api/health', (req, res) => {
 app.use('/api/leads', leadRoutes);
 
 // Serve client build in production
-if (process.env.NODE_ENV === 'production') {
-  const clientBuildPath = path.join(__dirname, '..', 'client', 'dist');
-  app.use(express.static(clientBuildPath));
+const clientBuildPath = path.join(__dirname, '..', 'client', 'dist');
+const fs = require('fs');
 
+if (fs.existsSync(clientBuildPath)) {
+  app.use(express.static(clientBuildPath));
   app.get('*', (req, res) => {
     res.sendFile(path.join(clientBuildPath, 'index.html'));
+  });
+} else if (process.env.NODE_ENV === 'production') {
+  console.warn('⚠️  Client build not found at:', clientBuildPath);
+  console.warn('Make sure to run: npm run build');
+  app.get('*', (req, res) => {
+    res.status(404).json({ 
+      error: 'Frontend not built yet',
+      path: clientBuildPath,
+      message: 'Run npm run build to generate client files'
+    });
   });
 } else {
   app.get('/', (req, res) => {
