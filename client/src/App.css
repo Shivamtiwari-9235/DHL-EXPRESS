@@ -1,0 +1,435 @@
+/* ===================== RESET ===================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, Helvetica, sans-serif; color: #333; }
+a { text-decoration: none; }
+
+/* ===================== HEADER ===================== */
+.header {
+  background: #FFCC00;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.dhl-logo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.dhl-logo-box {
+  background: #D40511;
+  color: #fff;
+  font-weight: 900;
+  font-size: 24px;
+  padding: 3px 10px;
+  letter-spacing: 2px;
+  line-height: 1;
+}
+.dhl-logo-express {
+  color: #D40511;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+/* ===================== HERO ===================== */
+.hero {
+  min-height: calc(100vh - 60px);
+  background: linear-gradient(to right, rgba(60,60,50,0.7) 0%, rgba(80,100,70,0.5) 60%, transparent 100%),
+              url('https://express-resources.dhl.com/rs/903-EZK-832/images/dhl_group_blcvdwliq8_24-11-dhl-09540-service-point-customer-drop-off_small.jpg') center center / cover no-repeat;
+  background-color: #6e7d5e;
+  display: flex;
+  align-items: center;
+  padding: 40px 5%;
+}
+.form-card {
+  background: rgba(255, 255, 255, 0.97);
+  padding: 28px 32px;
+  border-radius: 3px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+  width: 400px;
+  max-width: 95vw;
+}
+.form-title {
+  color: #D40511;
+  font-size: 21px;
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+.form-subtitle {
+  color: #333;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.form-desc {
+  color: #555;
+  font-size: 13px;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+.radio-question {
+  color: #333;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.radio-group {
+  margin-bottom: 14px;
+}
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 7px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #333;
+}
+.radio-option input[type="radio"] {
+  accent-color: #D40511;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.form-input {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #CCCCCC;
+  border-radius: 3px;
+  padding: 8px 12px;
+  font-size: 13px;
+  color: #333;
+  margin-bottom: 4px;
+  outline: none;
+  transition: border-color 0.2s;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.form-input:focus { border-color: #FFCC00; box-shadow: 0 0 0 2px rgba(255,204,0,0.3); }
+.form-input.readonly {
+  background: #F5F5F5;
+  cursor: default;
+  color: #777;
+}
+.form-input.error-field { border-color: #D40511; }
+.field-error {
+  color: #D40511;
+  font-size: 11px;
+  margin-bottom: 6px;
+  display: block;
+  margin-top: 1px;
+}
+.radio-error {
+  color: #D40511;
+  font-size: 11px;
+  margin-bottom: 8px;
+  display: block;
+}
+.consent-row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+.consent-row input[type="checkbox"] {
+  accent-color: #D40511;
+  margin-top: 3px;
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+}
+.consent-text {
+  font-size: 11px;
+  color: #555;
+  line-height: 1.5;
+}
+.privacy-text {
+  font-size: 11px;
+  color: #777;
+  margin-bottom: 18px;
+  line-height: 1.5;
+}
+.privacy-text a { color: #D40511; text-decoration: underline; }
+.submit-btn {
+  background: #D40511;
+  color: #fff;
+  border: none;
+  padding: 10px 34px;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
+  transition: background 0.2s;
+}
+.submit-btn:hover:not(:disabled) { background: #b5000e; }
+.submit-btn:disabled { opacity: 0.65; cursor: not-allowed; }
+
+/* Success card */
+.success-card {
+  text-align: center;
+  padding: 30px 10px;
+}
+.success-icon {
+  width: 56px;
+  height: 56px;
+  background: #4CAF50;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  font-size: 28px;
+  color: white;
+}
+.success-card h3 {
+  color: #333;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.success-card p {
+  color: #555;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* ===================== WHY CHOOSE ===================== */
+.why-section {
+  background: #fff;
+  padding: 50px 20px;
+  text-align: center;
+}
+.section-heading {
+  color: #333;
+  font-size: 20px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 32px;
+  line-height: 1.4;
+}
+.cards-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.benefit-card {
+  width: 290px;
+  border: 1px solid #EEEEEE;
+  border-radius: 4px;
+  padding: 24px 16px;
+  text-align: center;
+  background: #fff;
+}
+.number-circle {
+  width: 28px;
+  height: 28px;
+  background: #FFCC00;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 13px;
+  color: #333;
+  margin-bottom: 10px;
+}
+.card-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+.card-image {
+  width: 130px;
+  height: 90px;
+  margin: 0 auto 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+}
+.card-desc {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.55;
+}
+
+/* ===================== FAQ ===================== */
+.faq-section {
+  background: #F2F2F2;
+  padding: 50px 20px;
+}
+.faq-inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.faq-section .section-heading {
+  text-align: center;
+  margin-bottom: 28px;
+}
+.faq-item {
+  border-bottom: 1px solid #DDDDDD;
+  background: transparent;
+}
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 4px;
+  cursor: pointer;
+  gap: 12px;
+}
+.faq-question:hover .faq-q-text { text-decoration: underline; }
+.faq-q-text {
+  color: #D40511;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  flex: 1;
+}
+.faq-arrow {
+  color: #D40511;
+  font-size: 20px;
+  font-weight: 300;
+  flex-shrink: 0;
+  line-height: 1;
+  transition: transform 0.25s;
+}
+.faq-arrow.open { transform: rotate(180deg); }
+.faq-answer {
+  color: #555;
+  font-size: 13px;
+  line-height: 1.65;
+  padding: 2px 4px 16px;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+.faq-answer.open {
+  max-height: 200px;
+  padding: 4px 4px 16px;
+}
+
+/* ===================== FOOTER ===================== */
+.footer {
+  background: #fff;
+  padding: 28px 40px;
+  border-top: 1px solid #EEEEEE;
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.footer-left {}
+.footer-logo { margin-bottom: 4px; }
+.footer-group-text {
+  color: #999;
+  font-size: 12px;
+  margin-bottom: 12px;
+}
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 0;
+  margin-bottom: 8px;
+}
+.footer-links a {
+  color: #333;
+  font-size: 12px;
+  margin-right: 14px;
+  line-height: 2;
+}
+.footer-links a:hover { text-decoration: underline; }
+.footer-copy { color: #999; font-size: 11px; margin-top: 8px; }
+.footer-right { text-align: left; }
+.follow-text {
+  font-size: 13px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 12px;
+}
+.social-icons { display: flex; gap: 8px; }
+.social-box {
+  width: 36px;
+  height: 36px;
+  border: 1px solid #CCCCCC;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 900;
+  text-decoration: none;
+  transition: border-color 0.2s;
+  color: inherit;
+}
+.social-box:hover { border-color: #D40511; }
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 768px) {
+  .hero {
+    padding: 24px 16px;
+    justify-content: center;
+    min-height: auto;
+    padding-bottom: 40px;
+  }
+  .form-card {
+    width: 100%;
+    padding: 24px 20px;
+  }
+  .form-title { font-size: 18px; }
+  .section-heading { font-size: 17px; }
+  .benefit-card { width: 100%; max-width: 360px; }
+  .footer { padding: 24px 20px; }
+  .footer-inner { flex-direction: column; }
+  .cards-row { gap: 14px; }
+}
+
+/* ===================== FORM SELECT ===================== */
+.form-select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+  cursor: pointer;
+  color: #555;
+  height: 40px;
+}
+.form-select:focus { border-color: #FFCC00; box-shadow: 0 0 0 2px rgba(255,204,0,0.3); outline: none; }
+
+/* Field slide-in animation when radio is selected */
+.form-input, .form-select {
+  animation: slideIn 0.2s ease;
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Thank you page responsive */
+@media (max-width: 600px) {
+  .ty-articles { flex-direction: column; }
+  .ty-article-card { width: 100% !important; }
+}
