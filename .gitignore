@@ -1,16 +1,18 @@
-# ignore dependency directories
+# dependency directories
 /node_modules
 /client/node_modules
 /server/node_modules
 
-# ignore build outputs
+# build outputs
 /dist
 /client/dist
 /client/.vite
 
-# ignore env files
+# env files
 .env
 .env.local
+/server/.env
+/client/.env
 
 # misc
 .DS_Store

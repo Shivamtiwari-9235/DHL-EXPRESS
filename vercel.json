@@ -1,8 +1,0 @@
-{
-  "buildCommand": "cd client && npm ci --legacy-peer-deps && npm run build",
-  "outputDirectory": "client/dist",
-  "regions": ["iad1"],
-  "env": {
-    "VITE_API_URL": "https://dhl-india-api.onrender.com"
-  }
-}

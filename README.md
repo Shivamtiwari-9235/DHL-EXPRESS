@@ -1,52 +1,121 @@
-# DHL Express India — Open Account (MERN Stack)
+# DHL Express India — Open Account (Production Deployment)
+
+## ✅ Unified deployment architecture
+
+This repository is now configured to run as a single production app:
+- Backend: `server/` serves the frontend build from `client/dist`
+- Frontend: `client/` is built and served by Express
+- Public URL: one deployment URL from a single host
+
+### How it works
+- In development, the client uses `VITE_API_URL=http://localhost:5000`
+- In production, the frontend uses relative API routes: `/api/leads`
+- Express serves built React assets and handles API requests on the same origin
+
+---
 
 ## ⚡ Local development setup
 
 ```bash
-# 1. Install root and workspace dependencies
 cd dhl-india
 npm install
 npm run install:all
-
-# 2. Make sure MongoDB is running
-# Windows:  net start MongoDB
-# Mac/Linux: brew services start mongodb-community
-
-# 3. Start both servers together
 npm run dev
 ```
 
+Then open:
 - Frontend: `http://localhost:5173`
-- Backend API: `http://localhost:5000`
+- Backend API proxy: `http://localhost:5173/api/leads`
 
-### Separate start commands (optional)
+### Local server-only mode
 
 ```bash
 cd dhl-india/server
 npm run dev
 ```
 
+### Local client-only mode
+
 ```bash
 cd dhl-india/client
 npm run dev
 ```
 
-### Notes
+---
 
-- Always start the project from the `dhl-india` folder using `npm run dev`.
-- Do not use `npm start` from the root folder, because this project does not define a `start` script.
+## 🧩 Environment variables
 
-- The frontend uses `client/.env` with:
-  - `VITE_API_URL=http://localhost:5000`
-- If you get `Port 5173 is already in use`, stop the process using that port and restart:
-  - `netstat -ano | findstr 5173`
-  - `taskkill /PID <PID> /F`
+Create `.env` files from `.env.example`.
 
-### Verified today
+Example values in `.env.example`:
+```env
+VITE_API_URL=http://localhost:5000
+PORT=5000
+MONGO_URI=your-mongodb-connection-string
+ADMIN_API_KEY=your-admin-api-key
+CLIENT_URL=http://localhost:5173
+```
 
-- Backend successfully started on `http://localhost:5000`
-- Frontend successfully started on `http://localhost:5173`
-- Direct POST to `http://localhost:5000/api/leads` returned success
+### Production environment variables
+Set these in your hosting provider:
+- `MONGO_URI`
+- `ADMIN_API_KEY`
+- `CLIENT_URL` (optional; used for CORS allow list)
+
+---
+
+## 🔧 Production build and start commands
+
+Root commands for a single deployment:
+
+```bash
+cd dhl-india
+npm install
+npm run build
+npm start
+```
+
+- `npm run build` builds the React app and installs nested server/client dependencies
+- `npm start` launches the Express backend
+
+---
+
+## 🗂️ Modified files
+
+- `server/server.js`
+  - Added dynamic CORS handling
+  - Added production static asset serving from `client/dist`
+  - Added catch-all fallback route for React Router
+  - Added `/api/health` endpoint
+
+- `client/src/services/api.js`
+  - Switched API base URL to use `VITE_API_URL` or relative URLs
+  - Supports same-origin production deployment
+
+- `package.json`
+  - Updated `build` to install nested server/client dependencies and build the frontend
+  - Added `start` command for the unified server deployment
+
+- `.gitignore`
+  - Added ignore rules for `node_modules`, `client/dist`, `.env`, and build outputs
+
+- `.env.example`
+  - Added example development and production environment variables
+
+- `README.md`
+  - Updated deployment instructions and final architecture
+
+---
+
+## 🚀 Recommended production deployment
+
+Use a single web service provider such as Render with these settings:
+- Root directory: `dhl-india`
+- Build command: `npm install && npm run build`
+- Start command: `npm start`
+- Environment variables: `MONGO_URI`, `ADMIN_API_KEY`, `CLIENT_URL`
+
+This gives you one public URL for both the frontend and backend.
 
 ---
 
@@ -54,19 +123,9 @@ npm run dev
 
 | Method | URL | Auth | Description |
 |--------|-----|------|-------------|
-| POST | /api/leads | None | Submit form |
+| POST | /api/leads | None | Submit lead form |
+| GET | /api/health | None | Health check |
 | GET | /api/leads | x-api-key header | Get all leads |
-| PATCH | /api/leads/:id | x-api-key header | Update status |
+| PATCH | /api/leads/:id | x-api-key header | Update lead status |
 
-**Admin API Key**: `dhl_admin_2025`
-
----
-
-## ✅ Features
-- Radio toggle: Regular shipping → full form, One-time → short form
-- Country dropdown with 100+ countries (India pre-selected)
-- Form validation (client + server side)
-- Redirect to Thank You page after submit
-- Social media links → DHL official pages
-- FAQ accordion
-- Fully responsive
+**Admin API Key**: stored in environment variable `ADMIN_API_KEY`

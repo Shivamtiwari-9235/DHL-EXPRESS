@@ -1,7 +1,0 @@
-[build]
-  base = "client"
-  command = "npm ci --include=dev && npm run build"
-  publish = "dist"
-
-[context.production.environment]
-  VITE_API_URL = "https://dhl-india-api.onrender.com"
